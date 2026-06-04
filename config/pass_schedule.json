@@ -1,0 +1,14 @@
+{
+  "pass_1": {
+    "satellite_id": "satellite_1",
+    "start": 0,
+    "end": 10,
+    "bandwidth_gbps": 1.0
+  },
+  "pass_2": {
+    "satellite_id": "satellite_2",
+    "start": 5,
+    "end": 15,
+    "bandwidth_gbps": 1.0
+  }
+}

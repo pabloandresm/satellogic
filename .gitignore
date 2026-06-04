@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Simulation outputs
+report.json
+
+# Dynamically generated docker compose configuration
+docker-compose.yml

@@ -1,0 +1,16 @@
+{
+  "pass_s1_1": { "satellite_id": "satellite_1", "start":   0, "end":  20, "bandwidth_gbps": 1.0 },
+  "pass_s2_1": { "satellite_id": "satellite_2", "start":  25, "end":  45, "bandwidth_gbps": 1.0 },
+  "pass_s1_2": { "satellite_id": "satellite_1", "start":  50, "end":  70, "bandwidth_gbps": 1.0 },
+  "pass_s2_2": { "satellite_id": "satellite_2", "start":  75, "end":  95, "bandwidth_gbps": 1.0 },
+  "pass_s1_3": { "satellite_id": "satellite_1", "start": 100, "end": 120, "bandwidth_gbps": 1.0 },
+  "pass_s2_3": { "satellite_id": "satellite_2", "start": 125, "end": 145, "bandwidth_gbps": 1.0 },
+  "pass_s1_4": { "satellite_id": "satellite_1", "start": 150, "end": 170, "bandwidth_gbps": 1.0 },
+  "pass_s2_4": { "satellite_id": "satellite_2", "start": 175, "end": 195, "bandwidth_gbps": 1.0 },
+  "pass_s1_5": { "satellite_id": "satellite_1", "start": 200, "end": 220, "bandwidth_gbps": 1.0 },
+  "pass_s2_5": { "satellite_id": "satellite_2", "start": 225, "end": 245, "bandwidth_gbps": 1.0 },
+  "pass_s1_6": { "satellite_id": "satellite_1", "start": 250, "end": 270, "bandwidth_gbps": 1.0 },
+  "pass_s2_6": { "satellite_id": "satellite_2", "start": 275, "end": 295, "bandwidth_gbps": 1.0 },
+  "pass_s1_7": { "satellite_id": "satellite_1", "start": 300, "end": 320, "bandwidth_gbps": 1.0 },
+  "pass_s1_8": { "satellite_id": "satellite_1", "start": 350, "end": 370, "bandwidth_gbps": 1.0 }
+}
