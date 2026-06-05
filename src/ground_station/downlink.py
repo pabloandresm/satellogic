@@ -404,60 +404,6 @@ class DownlinkManager:
                 return window
         return None
 
-    def _do_transfer(
-        self, file_id: str, chunk_id: int, transfer_time: float, sim_clock: "SimClock"
-    ) -> None:
-        if self._conn is None or self._current_pass is None:
-            return
-
-        while True:
-            send_message(self._conn, MessageType.REQUEST, {"file_id": file_id, "chunk_id": chunk_id})
-            response = recv_message(self._conn)
-            msg_type = MessageType(response["type"])
-
-            if msg_type == MessageType.CHUNK_DATA:
-                expected_crc = zlib.crc32(f"{file_id}:{chunk_id}".encode())
-                if response["payload"].get("crc") != expected_crc:
-                    self._event_log.record(
-                        sim_time=sim_clock.now(),
-                        pass_id=self._current_pass.pass_id,
-                        satellite_id=self._current_pass.satellite_id,
-                        event_type=EventType.CHUNK_CRC_ERROR,
-                        file_id=file_id,
-                        chunk_id=chunk_id,
-                    )
-                    logger.debug("[GS] CRC error on chunk %s:%d, retrying", file_id, chunk_id)
-                    self._event_log.record(
-                        sim_time=sim_clock.now(),
-                        pass_id=self._current_pass.pass_id,
-                        satellite_id=self._current_pass.satellite_id,
-                        event_type=EventType.CHUNK_RETRIED,
-                        file_id=file_id,
-                        chunk_id=chunk_id,
-                    )
-                    continue
-                sim_clock.sleep(transfer_time)
-                self._record_chunk_received(file_id, chunk_id, sim_clock.now())
-                break
-            elif msg_type == MessageType.DROP:
-                self._event_log.record(
-                    sim_time=sim_clock.now(),
-                    pass_id=self._current_pass.pass_id,
-                    satellite_id=self._current_pass.satellite_id,
-                    event_type=EventType.CHUNK_DROPPED,
-                    file_id=file_id,
-                    chunk_id=chunk_id,
-                )
-                logger.debug("[GS] Chunk %s:%d dropped, retrying", file_id, chunk_id)
-                self._event_log.record(
-                    sim_time=sim_clock.now(),
-                    pass_id=self._current_pass.pass_id,
-                    satellite_id=self._current_pass.satellite_id,
-                    event_type=EventType.CHUNK_RETRIED,
-                    file_id=file_id,
-                    chunk_id=chunk_id,
-                )
-
     def _record_chunk_received(self, file_id: str, chunk_id: int, sim_time: float) -> None:
         sat_id = self._current_pass.satellite_id  # type: ignore[union-attr]
 
